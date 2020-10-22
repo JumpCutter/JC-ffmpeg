@@ -1,8 +1,9 @@
 #!/bin/bash
 
-default="./configure
-				--enable-ffmpeg \
-				--enable-ffprobe \
+default="./configure \
+				--disable-ffplay \
+				--disable-doc \
+				--disable-debug\
 				--enable-static \
 				--enable-cuda-nvcc \
 				--enable-nonfree \
