@@ -80,6 +80,12 @@ jobs:
           #  run: |
           #    apt-get install \
           #    mingw-w64
+      - name: Nvidia Headers
+        run: |
+          git clone https://git.videolan.org/git/ffmpeg/nv-codec-headers.git \
+          && cd nv-codec-headers \
+          && sudo make install \
+
       - name: Configure
         run: ./idiot_proof.sh -p linux
 
