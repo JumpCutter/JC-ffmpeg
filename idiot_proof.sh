@@ -1,7 +1,7 @@
 #!/bin/bash
 
 default="./configure
-				--disable-fflpay \
+				--disable-ffplay \
 				--enable-cuda-nvcc \
 				--enable-nonfree \
 				--enable-libnpp \
