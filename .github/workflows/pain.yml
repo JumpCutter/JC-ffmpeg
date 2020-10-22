@@ -86,9 +86,6 @@ jobs:
           && cd nv-codec-headers \
           && sudo make install \
 
-      - name: NV test
-        run: sudo ls /usr/local/cuda
-
       - name: Configure
         run: sudo ./idiot_proof.sh -p linux
 

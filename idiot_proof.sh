@@ -92,9 +92,8 @@ mac_configure() {
 }
 
 linux_configure() {
-	eval "$default --extra-cflags=-I/usr/local/cuda/include \
-								 --extra-ldflags=-L/usr/local/cuda/lib64
-"
+	eval "$default --extra-cflags=-I/usr/local/include/ffnvcodec \
+								 --extra-ldflags=-L/usr/local/lib/pkgconfig"
 }
 
 while [[ $# -gt 0 ]]; do
