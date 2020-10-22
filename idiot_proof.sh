@@ -1,7 +1,6 @@
 #!/bin/bash
 
 default="./configure
-				--disable-doc \
 				--disable-fflpay \
 				--enable-cuda-nvcc \
 				--enable-nonfree \
@@ -92,8 +91,7 @@ mac_configure() {
 }
 
 linux_configure() {
-	eval "$default --extra-cflags=-I/usr/local/include/ffnvcodec \
-								 --extra-ldflags=-L/usr/local/lib/pkgconfig"
+	eval "$default"
 }
 
 while [[ $# -gt 0 ]]; do
