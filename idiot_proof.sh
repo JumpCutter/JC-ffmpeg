@@ -1,7 +1,10 @@
 #!/bin/bash
 
 default="./configure
-				--disable-ffplay \
+				--disable-all \
+				--enable-ffmpeg \
+				--enable-ffprobe \
+				--enable-static \
 				--enable-cuda-nvcc \
 				--enable-nonfree \
 				--enable-libnpp \
@@ -63,7 +66,6 @@ default="./configure
 				--enable-opengl \
 				--enable-vulkan \
         --enable-libdrm \
-				--enable-static
 "
 
 helper() {
