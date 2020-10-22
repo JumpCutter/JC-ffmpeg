@@ -1,7 +1,6 @@
 #!/bin/bash
 
 default="./configure
-				--disable-debug \
 				--disable-doc \
 				--disable-fflpay \
 				--enable-cuda-nvcc \
