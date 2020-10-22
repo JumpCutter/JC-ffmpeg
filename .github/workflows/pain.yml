@@ -87,10 +87,10 @@ jobs:
           && sudo make install \
 
       - name: NV test
-        run: ls /usr/local/cuda
+        run: sudo ls /usr/local/cuda
 
       - name: Configure
-        run: ./idiot_proof.sh -p linux
+        run: sudo ./idiot_proof.sh -p linux
 
       - name: Run
         run: make
