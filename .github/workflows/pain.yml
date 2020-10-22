@@ -36,7 +36,7 @@ jobs:
 #      source_tag: ${{ steps.get_source.outputs.SOURCE_TAG }}
 # build the ffmpeg
   build:
-    needs: release # (4)
+    #needs: release # (4)
     #strategy: # (5)
     #  matrix:
     #    os: [ubuntu-latest, macos-latest]
