@@ -51,10 +51,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Update
-        #if: startsWith(matrix.os, 'ubuntu')
-        run: apt-get update -qq
-
       - name: Linux Deps
         #if: startsWith(matrix.os, 'ubuntu')
         run: |
