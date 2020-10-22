@@ -1,0 +1,106 @@
+name: My eternal Suffering
+
+on:
+  push:
+    branches:
+      - "*"
+
+jobs:
+# Creates The release Page
+#  release:
+#    runs-on: ubuntu-latest # (1)
+#    steps:
+#      - name: Create Release
+#        id: create_release
+#        uses: actions/create-release@v1
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+#        with:
+#          tag_name: ${{ github.ref }}
+#          release_name: Release ${{ github.ref }}
+#          body: | # (2)
+#            Changes in this Release how do we even tho
+#            - First Change
+#            - Second Change
+#          draft: false
+#          prerelease: false
+#
+#      - name: Get deployment refs # (3)
+#        id: get_source
+#        run: |
+#          echo ::set-output name=SOURCE_NAME::${GITHUB_REF#refs/*/}
+#          echo ::set-output name=SOURCE_BRANCH::${GITHUB_REF#refs/heads/}
+#          echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
+#    outputs:
+#      upload_url: ${{ steps.create_release.outputs.upload_url }}
+#      source_tag: ${{ steps.get_source.outputs.SOURCE_TAG }}
+# build the ffmpeg
+  build:
+    needs: release # (4)
+    #strategy: # (5)
+    #  matrix:
+    #    os: [ubuntu-latest, macos-latest]
+    #    mingw: [false]
+    #    include:
+    #      - os: ubuntu-latest
+    #        mingw: true
+    #  max-parallel: 3
+    #runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Update
+        #if: startsWith(matrix.os, 'ubuntu')
+        run: apt-get update -qq
+
+      - name: Linux Deps
+        #if: startsWith(matrix.os, 'ubuntu')
+        run: |
+          apt-get -y install \
+          autoconf \
+          automake \
+          build-essential \
+          cmake \
+          git-core \
+          libass-dev \
+          libfreetype6-dev \
+          libgnutls28-dev \
+          libtool \
+          libvorbis-dev \
+          pkg-config \
+          texinfo \
+          wget \
+          yasm \
+          zlib1g-dev
+
+          #- name: Windows Deps
+          #  if: matrix.mingw
+          #  run: |
+          #    apt-get install \
+          #    mingw-w64
+      - name: Configure
+        run: ./idiot_proof.sh -p linux
+
+      - name: Run
+        run: make
+
+      - name: List
+        run: ls -lRaq
+
+      - name: Artifact # (7)
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.os }}
+          path: bin/
+
+          #- name: Upload Asset
+          #  uses: actions/upload-release-asset@v1
+          #  env:
+          #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          #  with:
+          #    upload_url: ${{ needs.release.outputs.upload_url }}
+          #    asset_path: render
+          #    asset_name: render-${{ needs.release.outputs.source_tag }} # (8)
+          #    asset_content_type: application/x-executable
