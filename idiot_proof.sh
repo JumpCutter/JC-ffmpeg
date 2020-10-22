@@ -1,7 +1,6 @@
 #!/bin/bash
 
 default="./configure
-				--disable-all \
 				--enable-ffmpeg \
 				--enable-ffprobe \
 				--enable-static \
