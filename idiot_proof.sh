@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 default="./configure
 				--disable-debug \
@@ -125,18 +125,14 @@ case "$EXTENSION" in
 	win32)
 		echo "windows lame"
 		win_configure
-		make
-
 		;;
 	mac)
 		echo "mac is lame"
 		mac_configure
-		make
 		;;
 	linux)
 		echo "Linux master race"
 		linux_configure
-		make
 		;;
 	all)
 		echo "oh god get ready for the compile time"
